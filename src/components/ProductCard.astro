@@ -1,0 +1,11 @@
+---
+const { product } = Astro.props;
+---
+
+<article>
+  <h2>{product.productdisplayname}</h2>
+  <p>{product.articletype}</p>
+  <a href=`/product/${product.id}`>Se mere</a>
+</article>
+
+<style></style>
