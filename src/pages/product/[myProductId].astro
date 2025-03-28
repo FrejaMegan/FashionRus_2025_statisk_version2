@@ -1,5 +1,8 @@
 ---
+
 //@ts-nocheck
+
+import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const fashionUrl = "https://kea-alt-del.dk/t7/api/products";
@@ -16,5 +19,68 @@ export async function getStaticPaths() {
 const { myProduct } = Astro.props;
 ---
 
-<h1>Her er overskrifterne</h1>
-<p>{myProduct.productdisplayname}</p>
+<style>
+  .product-container {
+    display: flex; 
+    flex-direction: row;
+    gap: 20px;
+    align-items: center; 
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-container img {
+    width: 50%; 
+    max-width: 350px;
+    border-radius: 10px;
+  }
+
+  .product-info {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .product-info h1 {
+    font-size: 1.8rem;
+    color: #333;
+  }
+
+  .product-info p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+
+
+  @media (max-width: 600px) {
+    .product-container {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .product-container img {
+      width: 100%; 
+    }
+  }
+</style>
+
+<article class="product-container">
+  <img
+    src={`https://kea-alt-del.dk/t7/images/webp/640/${myProduct.id}.webp`}
+    alt={myProduct.productdisplayname}
+  />
+  <div class="product-info">
+    <h1>{myProduct.productdisplayname}</h1>
+    <p>Brand: {myProduct.brandname}</p>
+    <p>Kategori: {myProduct.category}</p>
+    <p>Pris: {myProduct.price} DKK</p>
+  </div>
+</article>
+
+

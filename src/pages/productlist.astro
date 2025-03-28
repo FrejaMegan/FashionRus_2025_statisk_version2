@@ -10,6 +10,15 @@ import ProductCard from "../components/ProductCard.astro";
 <main>
    { data.map((product)=> <ProductCard {product}/>)}
 </main>
+
+<style>
+    main
+    {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+</style>
     
 
 

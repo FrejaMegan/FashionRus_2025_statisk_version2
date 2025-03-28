@@ -2,13 +2,41 @@
 const { product } = Astro.props;
 ---
 
-<article>
-  <h2>{product.productdisplayname}</h2>
-  <p>{product.articletype}</p>
-  <a href=`/product/${product.id}`>Se mere</a>
-</article>
+
+  <article>
+    <img
+      src={`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}
+      alt="produktbillede"
+      class="produktImage"
+    />
+    <h2>{product.productdisplayname}</h2>
+    <p>{product.articletype}</p>
+    <a href=`/product/${product.id}`>Se mere</a>
+    {product.soldout == 1 && <p class="soldout">Udsolgt</p>}
+    {
+      product.discount !== null ? (
+        <p class="discound">Rabat ${product.discount}</p>
+      ) : (
+        ""
+      )
+    }
+  </article>
+
 
 <style>
+  article {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #efeff1;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    color: #585e50;
+    box-sizing: border-box;
+    width: 100%; 
+    margin-bottom: 20px;
+  }
+
   .produktImage {
     width: 100%;
     max-width: 300px;
@@ -17,14 +45,17 @@ const { product } = Astro.props;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
   }
-  article {
-    text-align: center;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    max-width: 350px;
-    background-color: #efeff1;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    color: #585e50;
+
+
+  @media (max-width: 900px) {
+    .productGrid {
+      grid-template-columns: repeat(2, 1fr); 
+    }
+  }
+
+  @media (max-width: 600px) {
+    .productGrid {
+      grid-template-columns: repeat(1, 1fr); 
+    }
   }
 </style>
