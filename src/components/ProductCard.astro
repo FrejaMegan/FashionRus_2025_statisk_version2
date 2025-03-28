@@ -8,4 +8,23 @@ const { product } = Astro.props;
   <a href=`/product/${product.id}`>Se mere</a>
 </article>
 
-<style></style>
+<style>
+  .produktImage {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  article {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    max-width: 350px;
+    background-color: #efeff1;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    color: #585e50;
+  }
+</style>
